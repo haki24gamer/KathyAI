@@ -735,6 +735,6 @@ with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) a
 print(f"Archive ZIP créée : {zip_filename}")
 
 # Étape 7 : Télécharger l'archive
-# from google.colab import files
-# files.download(zip_filename)
+from google.colab import files
+files.download(zip_filename)
 print(f"L'archive ZIP est disponible localement à : {os.path.abspath(zip_filename)}")
