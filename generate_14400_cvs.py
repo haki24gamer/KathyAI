@@ -568,6 +568,7 @@ def create_cv_pdf(cv, output_path):
         content = []
         content.append(Paragraph(cv["Nom complet"], title_style))
         content.append(Paragraph(f"{cv['Email']} | {cv['Téléphone']}", normal_style))
+        content.append(Paragraph(f"Métier: {cv['Métier']} | Années d’expérience: {cv['Années d’expérience']}", normal_style))
         content.append(Spacer(1, 0.1 * inch))
         
         if cv["Template"] == "modern":
@@ -614,11 +615,12 @@ def create_cv_docx(cv, output_path):
         title.runs[0].font.bold = True
         
         doc.add_paragraph(f"{cv['Email']} | {cv['Téléphone']}")
+        doc.add_paragraph(f"Métier: {cv['Métier']} | Années d’expérience: {cv['Années d’expérience']}")
         
         if cv["Template"] == "modern":
             table = doc.add_table(rows=1, cols=2)
-            table.cells[0, 0].text = "Compétences\n" + cv["Compétences"]
-            table.cells[0, 1].text = "Expériences\n" + "\n".join(cv["Expériences"])
+            table.cell(0, 0).text = "Compétences\n" + cv["Compétences"]
+            table.cell(0, 1).text = "Expériences\n" + "\n".join(cv["Expériences"])
         else:
             doc.add_paragraph("Informations personnelles" if cv["Langue du CV"] == "Français" else "Personal Information").runs[0].font.size = Pt(12)
             doc.add_paragraph(f"Nationalité: {cv['Nationalité']}\nAdresse: {cv['Adresse']}")
