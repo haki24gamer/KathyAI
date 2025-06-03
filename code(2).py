@@ -1,6 +1,7 @@
 import random
 import datetime
 import json
+import os
 
 # --- Constants from the problem description ---
 TOTAL_CV = 14400
@@ -500,14 +501,25 @@ def generate_professional_summary(job_title, years_experience, skills_list):
 
 # --- Main Generation Logic ---
 print("Starting CV data generation...")
-all_candidates_base = []
 
-# 1. Djiboutian candidates
+# Create 'contents' directory if it doesn't exist
+os.makedirs("contents", exist_ok=True)
+
+# Initialize counters for verification and file generation
+generated_cv_count = 0
+live_djib_cv_count = 0
+live_foreign_cv_count = 0
+live_djib_names_set = set()
+live_djib_duplicates = 0
+pdf_count = 0
+word_count = 0
+
+# Base candidate profiles generation (remains the same)
+all_candidates_base = []
 djiboutian_unique_full_names = generate_djiboutian_names(djiboutian_first_names, djiboutian_last_names_final, NUM_DJIBOUTIAN_CV)
 for name in djiboutian_unique_full_names:
     all_candidates_base.append({"full_name": name, "nationality": "Djiboutian"})
 
-# 2. Foreign candidates
 foreign_nationalities_list = list(foreign_first_names_data.keys())
 for _ in range(NUM_FOREIGN_CV):
     nat = random.choice(foreign_nationalities_list)
@@ -516,11 +528,11 @@ for _ in range(NUM_FOREIGN_CV):
 random.shuffle(all_candidates_base)
 print(f"Generated {len(all_candidates_base)} base candidate profiles.")
 
-all_cv_data = []
+# This list is no longer needed to store all CV data
+# all_cv_data = [] 
 candidate_idx = 0
-pdf_count = 0
-word_count = 0
 total_target_cv_formats = TOTAL_CV // 2
+last_generated_cv_object = None # To store the last CV for example print
 
 for job_idx, current_job_title in enumerate(jobs):
     # print(f"Processing job {job_idx+1}/{NUM_JOBS}: {current_job_title}") # Verbose
@@ -557,77 +569,126 @@ for job_idx, current_job_title in enumerate(jobs):
 
         # CV Format
         # Determine CV format to ensure a 50/50 split between PDF and Word
-        # total_target_cv_formats is already defined as TOTAL_CV // 2 (e.g., 7200 for 14400 CVs)
-
         can_assign_pdf = pdf_count < total_target_cv_formats
-        # For an even TOTAL_CV, the target for Word is also total_target_cv_formats
         can_assign_word = word_count < total_target_cv_formats
 
+        if TOTAL_CV % 2 != 0: # Handle odd TOTAL_CV case for Word target
+            # If TOTAL_CV is odd, one format will have one more file.
+            # Let's say PDF gets the extra one if pdf_count is already equal or greater.
+            # Or, more simply, ensure word_count target is also adjusted.
+            # For simplicity, we assume TOTAL_CV is usually even for a perfect 50/50.
+            # If TOTAL_CV is 14401, total_target_cv_formats is 7200.
+            # PDF can go up to 7200, Word up to 7200. One will be left.
+            # The logic below handles this by filling one then the other.
+            # If one quota is met, the other format is chosen.
+            # If both quotas are met, it will assign to the fallback (PDF here).
+            # To ensure the last one goes to Word if PDF is full:
+            if not can_assign_pdf and word_count < (TOTAL_CV - total_target_cv_formats):
+                 can_assign_word = True
+
+
         if can_assign_pdf and can_assign_word:
-            # Both formats can be assigned; alternate to maintain balance.
-            # Assign to PDF if its count is less than or equal to Word's count,
-            # otherwise assign to Word. This creates an alternating pattern.
             if pdf_count <= word_count:
                 cv_format = "PDF"
             else:
                 cv_format = "Word"
         elif can_assign_pdf:
-            # Only PDF can be assigned (Word quota likely met).
             cv_format = "PDF"
         elif can_assign_word:
-            # Only Word can be assigned (PDF quota likely met).
             cv_format = "Word"
         else:
-            # Both quotas are met. This state implies that the number of CVs
-            # processed should be at or near TOTAL_CV.
-            # This assigns a fallback format if the loop were to continue unexpectedly.
-            cv_format = "PDF" # Fallback assignment
+            # Fallback if both quotas met (e.g. if TOTAL_CV is odd and one format needs one more)
+            # Or if loop continues beyond TOTAL_CV for some reason.
+            if pdf_count < word_count : # Try to balance if possible
+                 cv_format = "PDF"
+            elif word_count < pdf_count:
+                 cv_format = "Word"
+            else: # Default if counts are equal or problem with logic
+                 cv_format = "PDF" 
 
-        if cv_format == "PDF": pdf_count += 1
-        else: word_count += 1
 
-        all_cv_data.append({
-            "id": len(all_cv_data) + 1, "full_name": full_name, "email": generate_email(full_name), 
+        generated_cv_count += 1
+
+        current_cv_object = {
+            "id": generated_cv_count, "full_name": full_name, "email": generate_email(full_name),
             "phone": generate_phone_number(nationality), "address": generate_address(nationality),
             "date_of_birth": f"{random.randint(1,28):02d}/{random.randint(1,12):02d}/{current_year - age}", "age": age,
             "nationality": nationality, "target_job_title": current_job_title,
             "professional_summary": generate_professional_summary(current_job_title, years_exp_val, selected_skills),
             "skills": selected_skills, "education": [education_info],
             "experience": generate_experience(age, education_info["graduation_year"], current_job_title, nationality),
-            "cv_format": cv_format,
+            "cv_format_type": cv_format, # Store the intended format type
             "languages": ["Français (Courant)", random.choice(["Anglais (Bon niveau)", "Arabe (Notions)", "Somali (Langue maternelle)"] if nationality == "Djiboutian" else ["Anglais (Courant)", "Langue locale (Courant)"])]
-        })
-    if (job_idx + 1) % 20 == 0: print(f"Processed {job_idx+1}/{NUM_JOBS} jobs...")
+        }
+        last_generated_cv_object = current_cv_object # Store for example print
+
+        # Determine file extension and update counts
+        file_extension = ""
+        if cv_format == "PDF":
+            if pdf_count < total_target_cv_formats or (TOTAL_CV % 2 != 0 and pdf_count <= word_count) :
+                pdf_count += 1
+                file_extension = "pdf"
+            elif word_count < (TOTAL_CV - total_target_cv_formats): # Check if Word can take it
+                word_count += 1
+                file_extension = "docx"
+                current_cv_object["cv_format_type"] = "Word" # Correct the type if switched
+            else: # Should not happen if logic is correct and TOTAL_CV is respected
+                pdf_count +=1 # Default to PDF if something is off
+                file_extension = "pdf"
+
+        else: # cv_format == "Word"
+            if word_count < (TOTAL_CV - total_target_cv_formats) or (TOTAL_CV % 2 != 0 and word_count < pdf_count):
+                word_count += 1
+                file_extension = "docx"
+            elif pdf_count < total_target_cv_formats: # Check if PDF can take it
+                pdf_count += 1
+                file_extension = "pdf"
+                current_cv_object["cv_format_type"] = "PDF" # Correct the type if switched
+            else: # Should not happen
+                word_count +=1
+                file_extension = "docx"
+        
+        # Save the individual CV data to a file in 'contents' directory
+        output_filename = f"cv_{generated_cv_count}.{file_extension}"
+        filepath = os.path.join("contents", output_filename)
+        with open(filepath, "w", encoding="utf-8") as f:
+            json.dump(current_cv_object, f, indent=2, ensure_ascii=False)
+
+        # Live verification
+        if nationality == 'Djiboutian':
+            live_djib_cv_count += 1
+            if full_name in live_djib_names_set:
+                live_djib_duplicates += 1
+            live_djib_names_set.add(full_name)
+        else:
+            live_foreign_cv_count += 1
+        
+        if generated_cv_count >= TOTAL_CV: # Stop if TOTAL_CV reached
+            break
+    if generated_cv_count >= TOTAL_CV: # Stop outer loop too
+        break
+    if (job_idx + 1) % 20 == 0: print(f"Processed {job_idx+1}/{NUM_JOBS} jobs... Generated {generated_cv_count} CVs so far.")
 
 
-print(f"\nGenerated {len(all_cv_data)} CV data entries.")
+print(f"\nGenerated {generated_cv_count} CV data entries.")
 print(f"PDFs: {pdf_count}, Word Docs: {word_count}")
 
-# --- Verification (Optional) ---
-djib_cv_count = sum(1 for cv in all_cv_data if cv['nationality'] == 'Djiboutian')
-foreign_cv_count = len(all_cv_data) - djib_cv_count
-print(f"Actual Djiboutian CVs: {djib_cv_count} (Target: {NUM_DJIBOUTIAN_CV})")
-print(f"Actual Foreign CVs: {foreign_cv_count} (Target: {NUM_FOREIGN_CV})")
+# --- Verification (using live counters) ---
+print(f"Actual Djiboutian CVs: {live_djib_cv_count} (Target: {NUM_DJIBOUTIAN_CV})")
+print(f"Actual Foreign CVs: {live_foreign_cv_count} (Target: {NUM_FOREIGN_CV})")
 
-djib_names_set = set()
-djib_duplicates = 0
-for cv_item in all_cv_data:
-    if cv_item['nationality'] == 'Djiboutian':
-        if cv_item['full_name'] in djib_names_set: djib_duplicates += 1
-        djib_names_set.add(cv_item['full_name'])
-print(f"Unique Djiboutian names generated: {len(djib_names_set)}")
-if djib_duplicates > 0: print(f"WARNING: {djib_duplicates} duplicate Djiboutian names found!")
+print(f"Unique Djiboutian names generated: {len(live_djib_names_set)}")
+if live_djib_duplicates > 0: print(f"WARNING: {live_djib_duplicates} duplicate Djiboutian names found!")
 else: print("Djiboutian names are unique.")
 
-# Save to JSON file
-output_filename = "cv_data_generation.json"
-with open(output_filename, "w", encoding="utf-8") as f:
-    json.dump(all_cv_data, f, indent=2, ensure_ascii=False)
-print(f"\nCV data saved to {output_filename}")
+# Remove saving all_cv_data to a single JSON file
+# output_filename = "cv_data_generation.json"
+# with open(output_filename, "w", encoding="utf-8") as f:
+#     json.dump(all_cv_data, f, indent=2, ensure_ascii=False)
+# print(f"\nCV data saved to {output_filename}")
+print(f"\nIndividual CV files saved in 'contents' directory.")
 
-# Example of one CV
-if all_cv_data:
-    print("\n--- Example CV Data (First Entry from file) ---")
-    with open(output_filename, "r", encoding="utf-8") as f:
-        loaded_data = json.load(f)
-    print(json.dumps(loaded_data[0], indent=2, ensure_ascii=False))
+# Example of one CV (last generated)
+if last_generated_cv_object:
+    print("\n--- Example CV Data (Last Generated CV) ---")
+    print(json.dumps(last_generated_cv_object, indent=2, ensure_ascii=False))

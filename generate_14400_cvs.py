@@ -25,7 +25,6 @@ fake_fr = Faker('fr_FR')
 fake_en = Faker('en_US')
 fake_ru = Faker('ru_RU')
 fake_it = Faker('it_IT')
-fake_am = Faker('am_ET')
 
 # Initialiser le traducteur
 translator = Translator()
@@ -418,8 +417,16 @@ def generate_experience(job, years, profile_type):
     current_year = 2025
     available_years = years
     for _ in range(num_experiences):
+        if available_years < 1:  # If no more years to assign, break
+            break
+        
         company = random.choice(djiboutian_companies) if random.random() < 0.6 else fake_fr.company()
-        duration = random.randint(1, min(5, available_years))
+        
+        # Ensure duration is at least 1 and not more than available_years or 5.
+        # upper_bound_duration will be at least 1 due to the check above.
+        upper_bound_duration = min(5, available_years)
+        duration = random.randint(1, upper_bound_duration)
+        
         start_year = current_year - duration
         role = f"{job} {random.choice(['Junior', 'Senior', ''])}".strip()
         responsibilities = random.sample(job_skills[job], random.randint(2, min(5, len(job_skills[job]))))
@@ -444,8 +451,8 @@ def generate_reference():
 # Fonction pour valider le CV
 def validate_cv(cv):
     profile_limits = {"junior": 5, "intermediate": 10, "experienced": 15, "senior": 20}
-    if cv["Années d'expérience"] > profile_limits[cv['Profil']]:
-        cv["Années d'expérience"] = random.randint(0, profile_limits[cv['Profil']])
+    if cv["Années d’expérience"] > profile_limits[cv['Profil']]:
+        cv["Années d’expérience"] = random.randint(0, profile_limits[cv['Profil']])
     if cv["Métier"] not in job_skills:
         raise ValueError(f"Compétences manquantes pour {cv['Métier']}")
 
@@ -517,7 +524,8 @@ def generate_cv(job, profile_type, is_djiboutian, nationality=None, cv_index=0):
     phone = f"+25377{random.randint(100000, 999999)}"
     
     # Format
-    cv_format = "pdf" if cv_index < 7200 else "docx"
+    # Adjust format determination based on the new max_cvs for a 50/50 split
+    cv_format = "pdf" if cv_index < (max_cvs / 2) else "docx"
     
     # Template de mise en page
     template = random.choice(["classic", "modern", "compact"])
@@ -643,7 +651,13 @@ def generate_and_save_cv(args):
     cv, index = args
     try:
         filename = f"cv_{cv['Nom complet'].replace(' ', '_')}_{cv['Métier'].replace(' ', '_')}_{random.randint(1000,9999)}.{cv['Format']}"
-        output_path = f"/content/cvs_{cv['Format']}/{filename}"
+        # Define base output directory
+        base_output_dir = "generated_cvs_output"
+        output_path = os.path.join(base_output_dir, f"cvs_{cv['Format']}", filename)
+        
+        # Ensure the specific format directory exists
+        os.makedirs(os.path.join(base_output_dir, f"cvs_{cv['Format']}"), exist_ok=True)
+
         if cv["Format"] == "pdf":
             create_cv_pdf(cv, output_path)
         else:
@@ -655,14 +669,17 @@ def generate_and_save_cv(args):
 
 # Étape 4 : Générer 14 400 CV uniques (72 CV par métier)
 cvs = []
-os.makedirs('/content/cvs_pdf', exist_ok=True)
-os.makedirs('/content/cvs_docx', exist_ok=True)
+# Define base output directory and create it
+base_output_dir = "generated_cvs_output"
+os.makedirs(base_output_dir, exist_ok=True)
+os.makedirs(os.path.join(base_output_dir, 'cvs_pdf'), exist_ok=True)
+os.makedirs(os.path.join(base_output_dir, 'cvs_docx'), exist_ok=True)
 
 # Répartition des profils
 profile_types = ["junior", "intermediate", "experienced", "senior"]
-cv_per_job = 72
+cv_per_job = 1  # Generate 1 CV per job to reach 200 CVs for 200 jobs
 total_cvs = 0
-max_cvs = 14400
+max_cvs = 200 # Generate only 200 files
 
 # Générer les CVs
 with ThreadPoolExecutor(max_workers=8) as executor:
@@ -690,24 +707,34 @@ with ThreadPoolExecutor(max_workers=8) as executor:
 
 # Étape 5 : Exporter les métadonnées
 cv_metadata = pd.DataFrame(cvs)
-cv_metadata.to_csv("/content/cv_metadata.csv", index=False)
-print("Métadonnées exportées dans /content/cv_metadata.csv")
+metadata_path = os.path.join(base_output_dir, "cv_metadata.csv")
+cv_metadata.to_csv(metadata_path, index=False)
+print(f"Métadonnées exportées dans {metadata_path}")
 
 # Étape 6 : Créer une archive ZIP
-zip_filename = '/content/14400_cvs.zip'
+zip_filename = os.path.join(base_output_dir, f'{max_cvs}_cvs.zip') # Dynamic zip filename
 with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zipf:
-    for root, _, files in os.walk('/content/cvs_pdf'):
+    pdf_dir_to_zip = os.path.join(base_output_dir, 'cvs_pdf')
+    for root, _, files in os.walk(pdf_dir_to_zip):
         for file in files:
             if file.endswith('.pdf'):
-                zipf.write(os.path.join(root, file), os.path.join('cvs_pdf', file))
-    for root, _, files in os.walk('/content/cvs_docx'):
+                full_path = os.path.join(root, file)
+                # Add file to zip with relative path inside 'cvs_pdf' folder in zip
+                zipf.write(full_path, os.path.join('cvs_pdf', os.path.relpath(full_path, pdf_dir_to_zip)))
+
+    docx_dir_to_zip = os.path.join(base_output_dir, 'cvs_docx')
+    for root, _, files in os.walk(docx_dir_to_zip):
         for file in files:
             if file.endswith('.docx'):
-                zipf.write(os.path.join(root, file), os.path.join('cvs_docx', file))
-    zipf.write('/content/cv_metadata.csv', 'cv_metadata.csv')
+                full_path = os.path.join(root, file)
+                # Add file to zip with relative path inside 'cvs_docx' folder in zip
+                zipf.write(full_path, os.path.join('cvs_docx', os.path.relpath(full_path, docx_dir_to_zip)))
+    
+    zipf.write(metadata_path, os.path.basename(metadata_path))
 
 print(f"Archive ZIP créée : {zip_filename}")
 
 # Étape 7 : Télécharger l'archive
-from google.colab import files
-files.download(zip_filename)
+# from google.colab import files
+# files.download(zip_filename)
+print(f"L'archive ZIP est disponible localement à : {os.path.abspath(zip_filename)}")
