@@ -109,22 +109,8 @@ jobs = [
     "Orthophoniste", "Kinésithérapeute", "Ergothérapeute", "Opticien", "Audioprothésiste", "Sage-femme",
     "Aide-soignant", "Ambulancier", "Laborantin", "Chercheur", "Professeur d'université", "Assistant de recherche",
     "Économiste", "Sociologue", "Anthropologue", "Historien", "Géographe", "Politicien", "Diplomate",
-    "Agent des douanes", "Inspecteur fiscal", "Auditeur", "Actuaire", "Assureur", "Courtier", "Notaire",
-    "Huissier", "Juge", "Procureur", "Greffier", "Planificateur", "Gestionnaire de projet", "Scrum master",
-    "Product owner", "UX designer", "UI designer", "Développeur mobile", "Développeur backend", "Développeur frontend",
-    "Administrateur système", "Administrateur réseau", "Spécialiste cybersécurité", "Testeur QA", "Technicien support",
-    "Community manager", "Responsable communication", "Publicitaire", "Organisateur d'événements", "Organisateur de mariage",
-    "DJ", "Musicien", "Chanteur", "Acteur", "Réalisateur", "Scénariste", "Producteur", "Costumier", "Maquilleur",
-    "Décorateur", "Éclairagiste", "Technicien son", "Technicien lumière", "Styliste", "Modéliste", "Couturier",
-    "Bijoutier", "Horloger", "Ébéniste", "Menuisier", "Charpentier", "Maçon", "Peintre en bâtiment", "Carreleur",
-    "Couvreur", "Vitrier", "Serrurier", "Forgeron", "Soudeur", "Métallurgiste", "Conducteur d'engins", "Grutier",
-    "Chauffeur poids lourd", "Livreur", "Magasinier", "Employé de banque", "Caissier", "Vendeur", "Manager de magasin",
-    "Merchandiser", "Sommelier", "Œnologue", "Viticulteur", "Brasseur", "Distillateur", "Apiculteur", "Éleveur",
-    "Vacher", "Berger", "Maraîcher", "Arboriculteur", "Pépiniériste", "Semencier", "Paysan", "Technicien agricole",
-    "Vulcanologue", "Sismologue", "Hydrologue", "Glaciologue", "Cartographe", "Topographe", "Géomaticien",
-    "Épidémiologiste", "Généticien", "Biochimiste", "Microbiologiste", "Pharmacologue", "Toxicologue",
-    "Nutritionniste", "Diététicien", "Préparateur physique", "Entraîneur", "Arbitre", "Agent sportif",
-    "Journaliste sportif", "Commentateur", "Éditeur", "Libraire", "Imprimeur", "Relieur"
+    "Agent des douanes", "Inspecteur fiscal", "Auditeur", "Actuaire", "Assureur", "Courtier", "Notaire"
+    # Removed the rest of the jobs to keep only the first 100
 ]
 
 # Compétences spécifiques par métier (5 à 15 par métier)
@@ -236,111 +222,11 @@ job_skills = {
     "Actuaire": ["Analyse des risques", "Modélisation", "Statistiques", "Rapport", "Logiciels actuariels"],
     "Assureur": ["Évaluation des risques", "Vente", "Conseil client", "Rédaction de polices", "Communication"],
     "Courtier": ["Négociation", "Conseil", "Connaissance des marchés", "Communication client", "Analyse"],
-    "Notaire": ["Rédaction d'actes", "Conseil juridique", "Connaissance des lois", "Communication", "Éthique"],
-    "Huissier": ["Exécution des décisions", "Rédaction", "Connaissance juridique", "Communication", "Organisation"],
-    "Juge": ["Interprétation des lois", "Prise de décision", "Éthique", "Communication", "Analyse"],
-    "Procureur": ["Poursuite", "Analyse juridique", "Plaidoyer", "Éthique", "Communication"],
-    "Greffier": ["Gestion des dossiers", "Rédaction", "Organisation", "Connaissance juridique", "Communication"],
-    "Planificateur": ["Planification", "Analyse", "Coordination", "Communication", "Gestion de projets"],
-    "Gestionnaire de projet": ["Planification", "Coordination", "Budgétisation", "Communication", "Résolution de problèmes"],
-    "Scrum master": ["Facilitation", "Agilité", "Coordination", "Communication", "Résolution de conflits"],
-    "Product owner": ["Définition de produit", "Priorisation", "Communication", "Agilité", "Analyse des besoins"],
-    "UX designer": ["Recherche utilisateur", "Prototypage", "Tests d'utilisabilité", "Design d'interface", "Communication"],
-    "UI designer": ["Design d'interface", "Prototypage", "Graphisme", "Outils (Figma)", "Créativité"],
-    "Développeur mobile": ["Programmation (Swift, Kotlin)", "Tests", "Conception d'applications", "Git", "API"],
-    "Développeur backend": ["Programmation (Python, Java)", "Bases de données", "API", "Sécurité", "Git"],
-    "Développeur frontend": ["HTML/CSS", "JavaScript", "Frameworks (React)", "Responsive design", "Git"],
-    "Administrateur système": ["Gestion de serveurs", "Sécurité", "Réseaux", "Scripting", "Maintenance"],
-    "Administrateur réseau": ["Configuration réseau", "Sécurité", "Dépannage", "Monitoring", "Protocoles"],
-    "Spécialiste cybersécurité": ["Analyse des menaces", "Pentesting", "Sécurité réseau", "Cryptographie", "Rapport"],
-    "Testeur QA": ["Tests fonctionnels", "Tests automatisés", "Rédaction de cas de test", "Bug tracking", "Communication"],
-    "Technicien support": ["Dépannage", "Support utilisateur", "Connaissance IT", "Communication", "Documentation"],
-    "Community manager": ["Gestion des réseaux sociaux", "Création de contenu", "Engagement", "Analyse", "Communication"],
-    "Responsable communication": ["Stratégie de communication", "Rédaction", "Gestion de crise", "Relations publiques", "Coordination"],
-    "Publicitaire": ["Conception de campagnes", "Analyse de marché", "Créativité", "Communication", "Gestion de projets"],
-    "Organisateur d'événements": ["Planification", "Coordination", "Budgétisation", "Communication", "Négociation"],
-    "Organisateur de mariage": ["Planification", "Coordination", "Créativité", "Communication client", "Budgétisation"],
-    "DJ": ["Mixage", "Connaissance musicale", "Animation", "Équipements audio", "Créativité"],
-    "Musicien": ["Interprétation", "Composition", "Connaissance musicale", "Pratique d'instruments", "Créativité"],
-    "Chanteur": ["Chant", "Interprétation", "Scène", "Connaissance musicale", "Créativité"],
-    "Acteur": ["Interprétation", "Improvisation", "Mémorisation", "Expression", "Travail d'équipe"],
-    "Réalisateur": ["Mise en scène", "Direction d'acteurs", "Montage", "Scénario", "Créativité"],
-    "Scénariste": ["Écriture", "Développement de personnages", "Structure narrative", "Créativité", "Recherche"],
-    "Producteur": ["Gestion de projets", "Financement", "Coordination", "Négociation", "Communication"],
-    "Costumier": ["Conception de costumes", "Couture", "Recherche historique", "Créativité", "Communication"],
-    "Maquilleur": ["Maquillage", "Effets spéciaux", "Connaissance des produits", "Créativité", "Précision"],
-    "Décorateur": ["Conception de décors", "Aménagement", "Créativité", "Budgétisation", "Communication"],
-    "Éclairagiste": ["Conception d'éclairage", "Installation", "Programmation", "Créativité", "Technologie"],
-    "Technicien son": ["Gestion du son", "Mixage", "Installation", "Dépannage", "Technologie"],
-    "Technicien lumière": ["Installation lumière", "Programmation", "Dépannage", "Connaissance des équipements", "Créativité"],
-    "Styliste": ["Conception de mode", "Tendances", "Croquis", "Créativité", "Communication"],
-    "Modéliste": ["Patronage", "Couture", "Conception", "Précision", "Connaissance des tissus"],
-    "Couturier": ["Couture", "Confection", "Précision", "Connaissance des tissus", "Service client"],
-    "Bijoutier": ["Conception de bijoux", "Travail des métaux", "Sertissage", "Créativité", "Précision"],
-    "Horloger": ["Réparation de montres", "Assemblage", "Précision", "Connaissance mécanique", "Service client"],
-    "Ébéniste": ["Travail du bois", "Conception de meubles", "Finition", "Précision", "Créativité"],
-    "Menuisier": ["Travail du bois", "Assemblage", "Lecture de plans", "Utilisation d'outils", "Précision"],
-    "Charpentier": ["Construction de structures", "Lecture de plans", "Travail du bois", "Normes de sécurité", "Précision"],
-    "Maçon": ["Construction", "Lecture de plans", "Maçonnerie", "Normes de sécurité", "Travail d'équipe"],
-    "Peintre en bâtiment": ["Peinture", "Préparation de surfaces", "Connaissance des matériaux", "Précision", "Service client"],
-    "Carreleur": ["Pose de carrelage", "Coupe", "Préparation de surfaces", "Précision", "Normes de qualité"],
-    "Couvreur": ["Pose de toitures", "Réparation", "Normes de sécurité", "Connaissance des matériaux", "Travail en hauteur"],
-    "Vitrier": ["Pose de vitres", "Coupe", "Réparation", "Précision", "Service client"],
-    "Serrurier": ["Fabrication de serrures", "Installation", "Dépannage", "Connaissance des mécanismes", "Service client"],
-    "Forgeron": ["Forge", "Travail des métaux", "Conception", "Précision", "Créativité"],
-    "Soudeur": ["Soudure", "Connaissance des métaux", "Normes de sécurité", "Précision", "Utilisation d'équipements"],
-    "Métallurgiste": ["Analyse des métaux", "Production", "Connaissance des alliages", "Sécurité", "Rapport"],
-    "Conducteur d'engins": ["Conduite", "Maintenance", "Normes de sécurité", "Coordination", "Précision"],
-    "Grutier": ["Opération de grues", "Normes de sécurité", "Coordination", "Communication", "Précision"],
-    "Chauffeur poids lourd": ["Conduite", "Navigation", "Entretien", "Respect des horaires", "Normes de sécurité"],
-    "Livreur": ["Livraison", "Navigation", "Service client", "Gestion du temps", "Conduite sécuritaire"],
-    "Magasinier": ["Gestion des stocks", "Organisation", "Réception", "Expédition", "Informatique"],
-    "Employé de banque": ["Service client", "Gestion de transactions", "Connaissance bancaire", "Communication", "Précision"],
-    "Caissier": ["Gestion de caisse", "Service client", "Comptabilité de base", "Communication", "Travail sous pression"],
-    "Vendeur": ["Vente", "Service client", "Négociation", "Connaissance des produits", "Communication"],
-    "Manager de magasin": ["Gestion d'équipe", "Vente", "Gestion des stocks", "Budgétisation", "Communication"],
-    "Merchandiser": ["Présentation visuelle", "Analyse des ventes", "Gestion des stocks", "Créativité", "Communication"],
-    "Sommelier": ["Connaissance des vins", "Dégustation", "Conseil client", "Gestion de cave", "Communication"],
-    "Œnologue": ["Vinification", "Analyse chimique", "Dégustation", "Recherche", "Gestion de production"],
-    "Viticulteur": ["Culture de la vigne", "Récolte", "Entretien", "Connaissance des sols", "Gestion"],
-    "Brasseur": ["Brassage", "Connaissance des ingrédients", "Contrôle qualité", "Hygiène", "Créativité"],
-    "Distillateur": ["Distillation", "Connaissance des alcools", "Contrôle qualité", "Hygiène", "Précision"],
-    "Apiculteur": ["Gestion des ruches", "Récolte de miel", "Connaissance des abeilles", "Entretien", "Commercialisation"],
-    "Éleveur": ["Soins aux animaux", "Gestion d'élevage", "Connaissance animale", "Commercialisation", "Maintenance"],
-    "Vacher": ["Traite", "Soins aux vaches", "Entretien", "Connaissance animale", "Hygiène"],
-    "Berger": ["Gestion du troupeau", "Soins aux animaux", "Navigation", "Connaissance animale", "Entretien"],
-    "Maraîcher": ["Culture maraîchère", "Récolte", "Irrigation", "Connaissance des sols", "Commercialisation"],
-    "Arboriculteur": ["Culture d'arbres fruitiers", "Taille", "Récolte", "Connaissance des sols", "Entretien"],
-    "Pépiniériste": ["Culture de plantes", "Greffage", "Entretien", "Connaissance botanique", "Commercialisation"],
-    "Semencier": ["Production de semences", "Contrôle qualité", "Recherche", "Connaissance botanique", "Commercialisation"],
-    "Paysan": ["Agriculture", "Élevage", "Gestion de ferme", "Connaissance des sols", "Commercialisation"],
-    "Technicien agricole": ["Analyse des sols", "Gestion des cultures", "Utilisation de machines", "Rapport", "Conseil"],
-    "Vulcanologue": ["Analyse volcanique", "Recherche", "Cartographie", "Évaluation des risques", "Rapport"],
-    "Sismologue": ["Analyse sismique", "Modélisation", "Recherche", "Évaluation des risques", "Rapport"],
-    "Hydrologue": ["Analyse de l'eau", "Modélisation", "Recherche", "Gestion des ressources", "Rapport"],
-    "Glaciologue": ["Analyse des glaciers", "Recherche", "Échantillonnage", "Modélisation", "Rapport"],
-    "Cartographe": ["Cartographie", "SIG", "Analyse spatiale", "Précision", "Logiciels"],
-    "Topographe": ["Mesures topographiques", "Cartographie", "Utilisation d'équipements", "Précision", "Rapport"],
-    "Géomaticien": ["SIG", "Analyse spatiale", "Cartographie", "Programmation", "Recherche"],
-    "Épidémiologiste": ["Analyse des données", "Recherche", "Prévention", "Rapport", "Statistiques"],
-    "Généticien": ["Analyse génétique", "Recherche", "Expérimentation", "Rédaction scientifique", "Bioinformatique"],
-    "Biochimiste": ["Analyse biochimique", "Expérimentation", "Recherche", "Rédaction scientifique", "Sécurité"],
-    "Microbiologiste": ["Analyse microbiologique", "Expérimentation", "Recherche", "Sécurité", "Rapport"],
-    "Pharmacologue": ["Recherche pharmacologique", "Expérimentation", "Analyse", "Sécurité", "Rédaction"],
-    "Toxicologue": ["Analyse toxicologique", "Recherche", "Évaluation des risques", "Rapport", "Sécurité"],
-    "Nutritionniste": ["Conseil alimentaire", "Évaluation", "Planification", "Communication", "Recherche"],
-    "Diététicien": ["Planification alimentaire", "Conseil", "Évaluation", "Communication", "Suivi"],
-    "Préparateur physique": ["Entraînement", "Évaluation physique", "Planification", "Motivation", "Communication"],
-    "Entraîneur": ["Coaching", "Planification", "Motivation", "Évaluation", "Communication"],
-    "Arbitre": ["Connaissance des règles", "Prise de décision", "Communication", "Impartialité", "Gestion du stress"],
-    "Agent sportif": ["Négociation", "Gestion de carrière", "Connaissance du sport", "Communication", "Réseautage"],
-    "Journaliste sportif": ["Rédaction", "Interview", "Connaissance sportive", "Montage", "Communication"],
-    "Commentateur": ["Commentaire en direct", "Connaissance sportive", "Communication", "Improvisation", "Charisme"],
-    "Éditeur": ["Révision", "Planification éditoriale", "Coordination", "Connaissance du marché", "Communication"],
-    "Libraire": ["Vente", "Conseil client", "Gestion des stocks", "Connaissance littéraire", "Communication"],
-    "Imprimeur": ["Impression", "Gestion des machines", "Contrôle qualité", "Organisation", "Précision"],
-    "Relieur": ["Reliure", "Restauration", "Précision", "Connaissance des matériaux", "Créativité"]
+    "Notaire": ["Rédaction d'actes", "Conseil juridique", "Connaissance des lois", "Communication", "Éthique"]
+    # Removed skills for jobs not in the top 100
 }
+job_skills = {job: skills for job, skills in job_skills.items() if job in jobs}
+
 
 # Descriptions spécifiques par métier
 job_descriptions = {
@@ -352,322 +238,20 @@ job_descriptions = {
         "Médecin avec {years} ans d’expérience, j’ai effectué des diagnostics précis en {skill1} et géré des urgences avec {skill2}.",
         "Spécialisé en {skill1}, j’ai travaillé {years} ans en milieu hospitalier, excelling en {skill2} et en soins patients."
     ]
+    # Descriptions for other jobs will be generated by the loop below
+}
+# Ensure all selected jobs have descriptions
+temp_job_descriptions = {
+    "Enseignant": job_descriptions.get("Enseignant"),
+    "Médecin": job_descriptions.get("Médecin")
 }
 for job in jobs:
-    if job not in job_descriptions:
-        job_descriptions[job] = [
+    if job not in temp_job_descriptions or temp_job_descriptions[job] is None: # Check if job is already in or if it was None
+        temp_job_descriptions[job] = [
             f"Professionnel(le) avec {{years}} ans d’expérience en {{skill1}}, compétent(e) en {{skill2}} et motivé(e) à relever des défis.",
             f"Expert(e) en {{skill1}} avec {{years}} ans d’expérience, je maîtrise {{skill2}} pour des résultats optimaux."
         ]
-
-# Langues parlées avec probabilités
-nationality_languages = {
-    "Djibouti": {"Arabe": 0.9, "Français": 0.8, "Somali": 0.5, "Afar": 0.5, "Anglais": 0.2},
-    "French": {"Français": 0.95, "Anglais": 0.5, "Arabe": 0.1},
-    "English": {"Anglais": 0.95, "Français": 0.2},
-    "Russian": {"Russe": 0.95, "Anglais": 0.4},
-    "Italian": {"Italien": 0.95, "Anglais": 0.5},
-    "Ethiopian": {"Amharique": 0.9, "Anglais": 0.4},
-    "Other": {"Arabe": 0.7, "Anglais": 0.6, "Français": 0.3}
-}
-
-# Niveaux de maîtrise
-language_proficiency = ["Courant", "Intermédiaire", "Débutant"]
-
-# Adresses djiboutiennes
-djiboutian_addresses = [
-    "Rue de Balbala, Djibouti", "Quartier Ambouli, Djibouti", "Avenue Gabode, Djibouti",
-    "Cité Arhiba, Djibouti", "Boulevard de la République, Djibouti"
-]
-
-# Institutions djiboutiennes
-institutions = [
-    "Université de Djibouti", "Lycée d’État de Djibouti", "Institut de Formation Professionnelle",
-    "Centre de Formation Technique de Balbala", "École Nationale de Commerce"
-]
-
-# Entreprises djiboutiennes
-djiboutian_companies = [
-    "Port de Djibouti", "Ministère de l’Éducation", "Djibouti Telecom", "Hôpital Général Peltier",
-    "Banque de Djibouti", "Électricité de Djibouti", "Aéroport International de Djibouti"
-]
-
-# Certificats
-certificates = [
-    "CAPES", "AWS Certified Solutions Architect", "Cisco CCNA", "PMP", "Scrum Master",
-    "Google Data Analytics", "Coursera Machine Learning", "IELTS", "TOEFL", "CFA Level 1",
-    "Microsoft Certified: Azure Fundamentals", "CompTIA Security+", "First Aid Certification"
-]
-
-# Fonction pour assigner les langues
-def assign_languages(nationality, is_djiboutian):
-    langs = []
-    lang_probs = nationality_languages["Djibouti" if is_djiboutian else nationality]
-    for lang, prob in lang_probs.items():
-        if random.random() < prob:
-            proficiency = random.choice(language_proficiency)
-            langs.append(f"{lang} ({proficiency})")
-    return langs[:random.randint(2, 4)] or ["Français (Courant)"]
-
-# Fonction pour générer des expériences professionnelles
-def generate_experience(job, years, profile_type):
-    num_experiences = {"junior": random.randint(1, 2), "intermediate": random.randint(2, 4),
-                       "experienced": random.randint(3, 5), "senior": random.randint(4, 6)}[profile_type]
-    experiences = []
-    current_year = 2025
-    available_years = years
-    for _ in range(num_experiences):
-        if available_years < 1:  # If no more years to assign, break
-            break
-        
-        company = random.choice(djiboutian_companies) if random.random() < 0.6 else fake_fr.company()
-        
-        # Ensure duration is at least 1 and not more than available_years or 5.
-        # upper_bound_duration will be at least 1 due to the check above.
-        upper_bound_duration = min(5, available_years)
-        duration = random.randint(1, upper_bound_duration)
-        
-        start_year = current_year - duration
-        role = f"{job} {random.choice(['Junior', 'Senior', ''])}".strip()
-        responsibilities = random.sample(job_skills[job], random.randint(2, min(5, len(job_skills[job]))))
-        experiences.append(f"{role} chez {company} ({start_year}-{current_year}): {', '.join(responsibilities)}")
-        current_year -= duration
-        available_years -= duration
-    return experiences
-
-# Fonction pour générer une description
-def generate_description(job, years, skills, language):
-    template = random.choice(job_descriptions[job])
-    description = template.format(years=years, skill1=skills[0], skill2=skills[1])
-    return description if language == "Français" else translator.translate(description, dest="en").text
-
-# Fonction pour générer une référence
-def generate_reference():
-    name = fake_fr.name() if random.random() < 0.7 else fake_en.name()
-    title = random.choice(["Manager", "Collègue", "Superviseur"])
-    email = f"{name.lower().replace(' ', '.')}"
-    return f"{name}, {title}, {email}"
-
-# Fonction pour valider le CV
-def validate_cv(cv):
-    profile_limits = {"junior": 5, "intermediate": 10, "experienced": 15, "senior": 20}
-    if cv["Années d’expérience"] > profile_limits[cv['Profil']]:
-        cv["Années d’expérience"] = random.randint(0, profile_limits[cv['Profil']])
-    if cv["Métier"] not in job_skills:
-        raise ValueError(f"Compétences manquantes pour {cv['Métier']}")
-
-# Fonction pour vérifier l'unicité du CV
-cv_signatures = set()
-def is_unique_cv(cv):
-    signature = f"{cv['Nom complet']}_{cv['Métier']}_{cv['Formation']}_{cv['Institution']}"
-    if signature in cv_signatures:
-        return False
-    cv_signatures.add(signature)
-    return True
-
-# Fonction pour générer un CV
-def generate_cv(job, profile_type, is_djiboutian, nationality=None, cv_index=0):
-    if is_djiboutian:
-        first_name = random.choice(djiboutian_first_names)
-        middle_name = random.choice(djiboutian_first_names)
-        last_name = random.choice(djiboutian_last_names)
-        full_name = f"{first_name} {middle_name} {last_name}"
-        nationality = "Djibouti"
-        address = random.choice(djiboutian_addresses)
-    else:
-        nationality = nationality or random.choice(["French", "English", "Russian", "Italian", "Ethiopian", "Other"])
-        first_name = random.choice(foreign_first_names[nationality])
-        last_name = random.choice(foreign_last_names)
-        full_name = f"{first_name} {last_name}"
-        address = fake_fr.address() if nationality == "French" else fake_en.address()
-    
-    # Expérience
-    experience_years = {"junior": random.randint(0, 5), "intermediate": random.randint(6, 10),
-                        "experienced": random.randint(11, 15), "senior": random.randint(16, 20)}[profile_type]
-    
-    # Compétences
-    num_skills = random.randint(4, min(8, len(job_skills[job])))
-    skills = random.sample(job_skills[job], num_skills)
-    
-    # Formation
-    education = random.choice([
-        "Baccalauréat", f"Licence en {job}", f"Master en {job}", "Diplôme professionnel",
-        f"BTS en {job}", "Doctorat en {job}"
-    ])
-    institution = random.choice(institutions)
-    
-    # Certificats
-    num_certs = random.randint(1, 3)
-    certificate_details = random.sample(certificates, num_certs)
-    certificate_details = [f"{cert} ({random.choice(institutions)})" for cert in certificate_details]
-    
-    # Langues
-    spoken_languages = assign_languages(nationality, is_djiboutian)
-    
-    # Hobbies
-    hobbies = random.sample(["Football", "Lecture", "Cuisine", "Voyage", "Photographie", "Musique"], random.randint(2, 4))
-    
-    # Langue du CV
-    cv_language = "Français" if random.random() < 0.9 else "Anglais"
-    
-    # Description
-    description = generate_description(job, experience_years, skills, cv_language)
-    
-    # Expériences
-    experiences = generate_experience(job, experience_years, profile_type)
-    
-    # Références
-    references = [generate_reference() for _ in range(random.randint(1, 2))]
-    
-    # Email et téléphone
-    email = f"{first_name.lower()}.{last_name.lower()}@example.com".replace("'", "").replace(" ", "")
-    phone = f"+25377{random.randint(100000, 999999)}"
-    
-    # Format
-    # Adjust format determination based on the new max_cvs for a 50/50 split
-    cv_format = "pdf" if cv_index < (max_cvs / 2) else "docx"
-    
-    # Template de mise en page
-    template = random.choice(["classic", "modern", "compact"])
-    
-    cv = {
-        "Nom complet": full_name,
-        "Nationalité": nationality,
-        "Adresse": address,
-        "Métier": job,
-        "Années d’expérience": experience_years,
-        "Profil": profile_type,
-        "Formation": education,
-        "Institution": institution,
-        "Compétences": ", ".join(skills),
-        "Certificats": ", ".join(certificate_details),
-        "Langues parlées": ", ".join(spoken_languages),
-        "Hobbies": ", ".join(hobbies),
-        "Description": description,
-        "Expériences": experiences,
-        "Références": references,
-        "Email": email,
-        "Téléphone": phone,
-        "Langue du CV": cv_language,
-        "Format": cv_format,
-        "Template": template
-    }
-    
-    validate_cv(cv)
-    return cv
-
-# Fonction pour créer un PDF
-def create_cv_pdf(cv, output_path):
-    try:
-        doc = SimpleDocTemplate(output_path, pagesize=letter, title=f"CV {cv['Nom complet']}")
-        styles = getSampleStyleSheet()
-        title_style = ParagraphStyle(name='Title', fontName='Helvetica-Bold', fontSize=16, alignment=1, spaceAfter=12)
-        heading_style = ParagraphStyle(name='Heading', fontName='Helvetica-Bold', fontSize=12, spaceAfter=8)
-        normal_style = ParagraphStyle(name='Normal', fontName='Helvetica', fontSize=10, spaceAfter=6)
-        
-        content = []
-        content.append(Paragraph(cv["Nom complet"], title_style))
-        content.append(Paragraph(f"{cv['Email']} | {cv['Téléphone']}", normal_style))
-        content.append(Paragraph(f"Métier: {cv['Métier']} | Années d’expérience: {cv['Années d’expérience']}", normal_style))
-        content.append(Spacer(1, 0.1 * inch))
-        
-        if cv["Template"] == "modern":
-            data = [[Paragraph("Compétences: " + cv["Compétences"], normal_style),
-                     Paragraph("Expériences: " + "<br/>".join(cv["Expériences"]), normal_style)]]
-            table = Table(data, colWidths=[3 * inch, 3 * inch])
-            table.setStyle(TableStyle([('VALIGN', (0, 0), (-1, -1), 'TOP')]))
-            content.append(table)
-        else:
-            content.append(Paragraph("Informations personnelles" if cv["Langue du CV"] == "Français" else "Personal Information", heading_style))
-            content.append(Paragraph(f"Nationalité: {cv['Nationalité']}<br/>Adresse: {cv['Adresse']}", normal_style))
-            content.append(Spacer(1, 8))
-            content.append(Paragraph("Expériences professionnelles" if cv["Langue du CV"] == "Français" else "Professional Experience", heading_style))
-            for exp in cv["Expériences"]:
-                content.append(Paragraph(exp, normal_style))
-            content.append(Paragraph("Compétences" if cv["Langue du CV"] == "Français" else "Skills", heading_style))
-            content.append(Paragraph(cv["Compétences"], normal_style))
-        
-        content.append(Paragraph("Formation" if cv["Langue du CV"] == "Français" else "Education", heading_style))
-        content.append(Paragraph(f"{cv['Formation']} ({cv['Institution']})", normal_style))
-        content.append(Paragraph("Certificats" if cv["Langue du CV"] == "Français" else "Certificates", heading_style))
-        content.append(Paragraph(cv["Certificats"], normal_style))
-        content.append(Paragraph("Langues parlées" if cv["Langue du CV"] == "Français" else "Spoken Languages", heading_style))
-        content.append(Paragraph(cv["Langues parlées"], normal_style))
-        content.append(Paragraph("Hobbies" if cv["Langue du CV"] == "Français" else "Hobbies", heading_style))
-        content.append(Paragraph(cv["Hobbies"], normal_style))
-        content.append(Paragraph("Description" if cv["Langue du CV"] == "Français" else "Profile Description", heading_style))
-        content.append(Paragraph(cv["Description"], normal_style))
-        content.append(Paragraph("Références" if cv["Langue du CV"] == "Français" else "References", heading_style))
-        for ref in cv["Références"]:
-            content.append(Paragraph(ref, normal_style))
-        
-        doc.build(content)
-    except Exception as e:
-        print(f"Erreur lors de la création du PDF {output_path}: {e}")
-
-# Fonction pour créer un DOCX
-def create_cv_docx(cv, output_path):
-    try:
-        doc = Document()
-        title = doc.add_paragraph(cv["Nom complet"])
-        title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        title.runs[0].font.size = Pt(16)
-        title.runs[0].font.bold = True
-        
-        doc.add_paragraph(f"{cv['Email']} | {cv['Téléphone']}")
-        doc.add_paragraph(f"Métier: {cv['Métier']} | Années d’expérience: {cv['Années d’expérience']}")
-        
-        if cv["Template"] == "modern":
-            table = doc.add_table(rows=1, cols=2)
-            table.cell(0, 0).text = "Compétences\n" + cv["Compétences"]
-            table.cell(0, 1).text = "Expériences\n" + "\n".join(cv["Expériences"])
-        else:
-            doc.add_paragraph("Informations personnelles" if cv["Langue du CV"] == "Français" else "Personal Information").runs[0].font.size = Pt(12)
-            doc.add_paragraph(f"Nationalité: {cv['Nationalité']}\nAdresse: {cv['Adresse']}")
-            doc.add_paragraph("Expériences professionnelles" if cv["Langue du CV"] == "Français" else "Professional Experience").runs[0].font.size = Pt(12)
-            for exp in cv["Expériences"]:
-                doc.add_paragraph(exp)
-            doc.add_paragraph("Compétences" if cv["Langue du CV"] == "Français" else "Skills").runs[0].font.size = Pt(12)
-            doc.add_paragraph(cv["Compétences"])
-        
-        doc.add_paragraph("Formation" if cv["Langue du CV"] == "Français" else "Education").runs[0].font.size = Pt(12)
-        doc.add_paragraph(f"{cv['Formation']} ({cv['Institution']})")
-        doc.add_paragraph("Certificats" if cv["Langue du CV"] == "Français" else "Certificates").runs[0].font.size = Pt(12)
-        doc.add_paragraph(cv["Certificats"])
-        doc.add_paragraph("Langues parlées" if cv["Langue du CV"] == "Français" else "Spoken Languages").runs[0].font.size = Pt(12)
-        doc.add_paragraph(cv["Langues parlées"])
-        doc.add_paragraph("Hobbies" if cv["Langue du CV"] == "Français" else "Hobbies").runs[0].font.size = Pt(12)
-        doc.add_paragraph(cv["Hobbies"])
-        doc.add_paragraph("Description" if cv["Langue du CV"] == "Français" else "Profile Description").runs[0].font.size = Pt(12)
-        doc.add_paragraph(cv["Description"])
-        doc.add_paragraph("Références" if cv["Langue du CV"] == "Français" else "References").runs[0].font.size = Pt(12)
-        for ref in cv["Références"]:
-            doc.add_paragraph(ref)
-        
-        doc.save(output_path)
-    except Exception as e:
-        print(f"Erreur lors de la création du DOCX {output_path}: {e}")
-
-# Fonction pour générer et sauvegarder un CV
-def generate_and_save_cv(args):
-    cv, index = args
-    try:
-        filename = f"cv_{cv['Nom complet'].replace(' ', '_')}_{cv['Métier'].replace(' ', '_')}_{random.randint(1000,9999)}.{cv['Format']}"
-        # Define base output directory
-        base_output_dir = "generated_cvs_output"
-        output_path = os.path.join(base_output_dir, f"cvs_{cv['Format']}", filename)
-        
-        # Ensure the specific format directory exists
-        os.makedirs(os.path.join(base_output_dir, f"cvs_{cv['Format']}"), exist_ok=True)
-
-        if cv["Format"] == "pdf":
-            create_cv_pdf(cv, output_path)
-        else:
-            create_cv_docx(cv, output_path)
-        return {"filename": filename, "cv": cv}
-    except Exception as e:
-        print(f"Erreur lors de la génération du CV {index}: {e}")
-        return None
+job_descriptions = temp_job_descriptions
 
 # Étape 4 : Générer 14 400 CV uniques (72 CV par métier)
 cvs = []
@@ -679,9 +263,9 @@ os.makedirs(os.path.join(base_output_dir, 'cvs_docx'), exist_ok=True)
 
 # Répartition des profils
 profile_types = ["junior", "intermediate", "experienced", "senior"]
-cv_per_job = 1  # Generate 1 CV per job to reach 200 CVs for 200 jobs
+cv_per_job = 1  # Generate 1 CV per job to reach 100 CVs for 100 jobs
 total_cvs = 0
-max_cvs = 200 # Generate only 200 files
+max_cvs = 100 # Generate only 100 files
 
 # Générer les CVs
 with ThreadPoolExecutor(max_workers=8) as executor:
